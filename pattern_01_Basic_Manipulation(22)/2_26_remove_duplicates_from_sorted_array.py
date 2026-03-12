@@ -27,16 +27,20 @@ def remove_duplicates(nums):
     return cnt, result
 
 #we need to update in place -> how to do that using 2 pointer
+#two pointer apprach- fast and slow pointer
 def inplace_remove_duplicate(nums):
-    i = 0
-    for j in range(len(nums)):
-        if nums[j] == nums[j-1]:
-            nums[j] = nums[i]
-            i += 1
+    slow = 0
+    #here we are just filling valid elements [valid | invalid]
+    for fast in range(1, len(nums)):
+        if nums[fast] != nums[slow]:
+            slow += 1
+            nums[slow] = nums[fast]
     print(nums)
-    return i
+    return slow + 1
 
 
-nums = [1, 1, 2]
+
+
+nums = [0,0,1,1,1,2,2,3,3,4]
 print(inplace_remove_duplicate(nums))
 
